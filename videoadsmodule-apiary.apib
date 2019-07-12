@@ -3,4 +3,43 @@ HOST: https://video-ads-module.media.nbcuni.com/
 
 # Video Ads Module (for D2C)
 
-The **Video Ads Module (VAM)** service...
+The **Video Ads Module (VAM)** service is used by the client application to retrieve the 
+[Freewheel URL](https://hub.freewheel.tv/pages/viewpage.action?spaceKey=techdocs&title=HTTP+GET+Ad+Request+and+SmartXML+Response) 
+it should call in order to request the video multiple ad playlist 
+([VMAP](https://www.iab.com/guidelines/digital-video-multiple-ad-playlist-vmap-1-0-1/)) 
+document for a particular video stream.
+
+## See Also
+
+[NBCU Ad Sales Solutions: Video Ads User Stories](https://wiki.inbcu.com/display/SSH/7%29+User+Stories)
+
+# Get Freewheel URL [GET /freewheel-url?{debug,brand,platform,programType,videoSpec}]
+
++ Parameters
+
+    + debug (enum[number], optional)
+            
+        Optional "debug" mode so that the response contains an exploded JSON version of all the parameters
+        in the Freewheel URL. This is easier to read when you're debugging.
+        
+        If you pass **debug=1** or **debug=**_string_ or simply pass **debug** by itself, you will get the debug
+        response.
+        
+        If the **debug** parameter is missing, or if you pass **debug=0**, you will get the normal response
+        without any debug info.
+        
+        + Default: `0`
+        
+        + Members
+            + `0`
+            + `1`
+            
++ Response 200 (application/json)
+
+    Standard response
+
+    + Body
+    
+            {
+                "freewheelUrl": "https://[customerId].v.fwmrm.net/ad/g/1?[globalParams];[keyValues];[ParamsForSlot1];[ParamsForSlot2];...;[ParamsForSlotN];"
+            }
