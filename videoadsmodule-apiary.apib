@@ -13,7 +13,31 @@ document for a particular video stream.
 
 [NBCU Ad Sales Solutions: Video Ads User Stories](https://wiki.inbcu.com/display/SSH/7%29+User+Stories)
 
-# Get Freewheel URL [GET /freewheel-url?{debug,brand,platform,programType,videoSpec}]
+# Freewheel URL [/freewheel-url?{debug,brand,platform,programType,videoSpec}]
+
++ Parameters
+
+    + brand (enum[string], required)
+            
+        NBCU brand identifier.
+        
+
+
+# Get Freewheel URL [GET /freewheel-url?{brand,platform,programType,videoSpec}]
+
+The client calls this and gets the Freewheel URL from **freewheelUrl** in the response. 
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "freewheelUrl": "https://[customerId].v.fwmrm.net/ad/g/1?[globalParams];[keyValues];[ParamsForSlot1];[ParamsForSlot2];...;[ParamsForSlotN];"
+            }
+
+# Get Freewheel URL (debug version) [GET /freewheel-url?{debug,brand,platform,programType,videoSpec}]
+
+The debug version returns the same **frewheelUrl** value, plus the exploded set of Freewheel parameters embedded in the URL.
 
 + Parameters
 
@@ -36,10 +60,14 @@ document for a particular video stream.
             
 + Response 200 (application/json)
 
-    Standard response
-
     + Body
     
             {
                 "freewheelUrl": "https://[customerId].v.fwmrm.net/ad/g/1?[globalParams];[keyValues];[ParamsForSlot1];[ParamsForSlot2];...;[ParamsForSlotN];"
+                "freewheelParameters":
+                {
+                    "key": "value",
+                    "key": "value",
+                    ...
+                }
             }
