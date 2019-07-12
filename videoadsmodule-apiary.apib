@@ -87,8 +87,25 @@ The debug version returns the same **frewheelUrl** value, plus the exploded set 
                 "freewheelUrl": "https://[customerId].v.fwmrm.net/ad/g/1?[globalParams];[keyValues];[ParamsForSlot1];[ParamsForSlot2];...;[ParamsForSlotN];"
                 "freewheelParameters":
                 {
-                    "key": "value",
-                    "key": "value",
-                    ...
+                    "globalParameters": 
+                    {
+                        "key": "value",
+                        ...
+                    },
+                    "freewheelKeyValues":
+                    {
+                        "key": "value",
+                        ...
+                    },
+                    "nbcuKeyValues":
+                    {
+                        "key": "value",
+                        ...
+                    },
+                    "slotParameters":
+                    {
+                        "key": "value",
+                        ...
+                    }
                 }
             }
