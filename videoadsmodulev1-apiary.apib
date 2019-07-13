@@ -1,0 +1,111 @@
+FORMAT: 1A
+HOST: https://video-ads-module.media.nbcuni.com/
+
+# Video Ads Module (for D2C)
+
+The **Video Ads Module (VAM)** service is used by the client application to retrieve the 
+[Freewheel URL](https://hub.freewheel.tv/pages/viewpage.action?spaceKey=techdocs&title=HTTP+GET+Ad+Request+and+SmartXML+Response) 
+it should call in order to request the video multiple ad playlist 
+([VMAP](https://www.iab.com/guidelines/digital-video-multiple-ad-playlist-vmap-1-0-1/)) 
+document for a particular video stream.
+
+## See Also
+
+[NBCU Ad Sales Solutions: Video Ads User Stories](https://wiki.inbcu.com/display/SSH/7%29+User+Stories)
+
+# Freewheel URL [/freewheel-url?{debug,brand,platform,streamType,videoSpec}]
+
++ Parameters
+
+    + brand (enum[string], required)
+            
+        NBCU brand identifier.
+        
+    + platform (enum[string], required)
+    
+        String describing the hardware/software platform that the client app is running on.
+        
+    + streamType (enum[string], required)
+    
+        String describing the temporal nature of the stream. _linear_ refers to the national broadcast video
+        stream that is being transmitted to MVPDs. _live_ refers to a live event that isn't being transmitted to MVPDs,
+        such as all of the parallel live feeds that we generate during the Olympics. 
+        
+        + `vod`
+        + `linear`
+        + `live`
+
+    + videoSpec (string, required)
+    
+        String created by the client app that represents the combination of:
+        - Adaptive bit rate (ABR) type
+        - Frame rate
+
+# Get Freewheel URL [GET /freewheel-url?{brand,platform,streamType,videoSpec}]
+
+The client calls this and gets the Freewheel URL from **freewheelUrl** in the response. 
+
+All of the parameters that are passed in are used to determine the exact set of Freewheel parameters to include in
+the Freewheel URL.
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "freewheelUrl": "https://[customerId].v.fwmrm.net/ad/g/1?[globalParams];[keyValues];[ParamsForSlot1];[ParamsForSlot2];...;[ParamsForSlotN];"
+            }
+
+# Get Freewheel URL (debug version) [GET /freewheel-url?{debug,brand,platform,streamType,videoSpec}]
+
+The debug version returns the same **frewheelUrl** value, plus the exploded set of Freewheel parameters embedded in the URL.
+
++ Parameters
+
+    + debug (enum[number], optional)
+            
+        Optional "debug" mode so that the response contains an exploded JSON version of all the parameters
+        in the Freewheel URL. This is easier to read when you're debugging.
+        
+        If you pass **debug=1** or **debug=**_string_ or simply pass **debug** by itself, you will get the debug
+        response.
+        
+        If the **debug** parameter is missing, or if you pass **debug=0**, you will get the normal response
+        without any debug info.
+        
+        + Default: `0`
+        
+        + Members
+            + `0`
+            + `1`
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "freewheelUrl": "https://[customerId].v.fwmrm.net/ad/g/1?[globalParams];[keyValues];[ParamsForSlot1];[ParamsForSlot2];...;[ParamsForSlotN];"
+                "freewheelParameters":
+                {
+                    "globalParameters": 
+                    {
+                        "key": "value",
+                        ...
+                    },
+                    "freewheelKeyValues":
+                    {
+                        "key": "value",
+                        ...
+                    },
+                    "nbcuKeyValues":
+                    {
+                        "key": "value",
+                        ...
+                    },
+                    "slotParameters":
+                    {
+                        "key": "value",
+                        ...
+                    }
+                }
+            }
