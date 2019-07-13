@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: https://video-ads-module.media.nbcuni.com/v1/Update
+HOST: https://video-ads-module.media.nbcuni.com/v1/
 
 # Video Ads Module v1 (for D2C)
 
@@ -13,7 +13,7 @@ document for a particular video stream.
 
 [NBCU Ad Sales Solutions: Video Ads User Stories](https://wiki.inbcu.com/display/SSH/7%29+User+Stories)
 
-# Freewheel URL [/freewheel-url?{debug,brand,platform,streamType,videoSpec}]
+# Freewheel URL [/freewheel-url?{debug,brand,platform,streamType,videoSpec,videoAssetId,videoDurationInSeconds,httpUserAgent,httpReferer,canonicalMvpdName}]
 
 + Parameters
 
@@ -41,7 +41,40 @@ document for a particular video stream.
         - Adaptive bit rate (ABR) type
         - Frame rate
 
-# Get Freewheel URL [GET /freewheel-url?{brand,platform,streamType,videoSpec}]
+    + videoAssetId (string, required)
+    
+        Unique ID for the video asset that the user is watching.
+    
+    + videoDurationInSeconds (number, required)
+    
+        Must be a positive integer.
+    
+    + httpUserAgent (string, required)
+    
+        Used to understand which devices/platforms we're serving ads to.
+        
+    + httpReferer (string, optional)
+    
+        Sent by web browsers only.
+        
+    + canonicalMvpdName (string, required)
+    
+        Canonical MVPD name string. VAM will use the canonical MVPD name string to find a corresponding hash value
+        in [this file](https://tve-common.nbcuni.com/web/js/nbcuni_hash_config.js).
+        (The hash value is what will get passed to Freewheel.)
+        
+        If a user is a D2C-only customer, then pass "D2C" as the MVPD name.
+        
+    + latitude (number, optional)
+    
+    + longitude (number, optional)
+    
+    + gdprApplies (boolean, required)
+    
+    + gdprConsentString (string, required)
+    
+
+# Get Freewheel URL [GET /freewheel-url?{brand,platform,streamType,videoSpec,videoAssetId,videoDurationInSeconds,httpUserAgent,httpReferer,canonicalMvpdName}]
 
 The client calls this and gets the Freewheel URL from **freewheelUrl** in the response. 
 
@@ -56,7 +89,7 @@ the Freewheel URL.
                 "freewheelUrl": "https://[customerId].v.fwmrm.net/ad/g/1?[globalParams];[keyValues];[ParamsForSlot1];[ParamsForSlot2];...;[ParamsForSlotN];"
             }
 
-# Get Freewheel URL (debug version) [GET /freewheel-url?{debug,brand,platform,streamType,videoSpec}]
+# Get Freewheel URL (debug version) [GET /freewheel-url?{debug,brand,platform,streamType,videoSpec,videoAssetId,videoDurationInSeconds,httpUserAgent,httpReferer,canonicalMvpdName}]
 
 The debug version returns the same **frewheelUrl** value, plus the exploded set of Freewheel parameters embedded in the URL.
 
