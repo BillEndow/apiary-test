@@ -65,14 +65,32 @@ document for a particular video stream.
         
         If a user is a D2C-only customer, then pass "D2C" as the MVPD name.
         
-    + latitude (number, optional)
+    + locationLatitude (number, optional)
     
-    + longitude (number, optional)
+    + locationLongitude (number, optional)
+    
+    + locationCountry (string, optional)
+    
+    + locationState (string, optional)
+    
+    + locationCity (string, optional)
+    
+    + locationDma (string, optional)
+    
+    + locationPostalCode (string, optional)
     
     + gdprApplies (boolean, required)
     
     + gdprConsentString (string, required)
     
+    + playerWidthPixels (number, required)
+    
+    + playerHeightPixels (number, required)
+    
+    + deviceTypeAndId (string, required)
+    
+        This value will be ignored for COPPA users.
+        
 
 # Get Freewheel URL [GET /freewheel-url?{brand,platform,streamType,videoSpec,videoAssetId,videoDurationInSeconds,httpUserAgent,httpReferer,canonicalMvpdName}]
 
