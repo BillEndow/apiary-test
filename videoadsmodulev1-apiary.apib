@@ -13,7 +13,7 @@ document for a particular video stream.
 
 [NBCU Ad Sales Solutions: Video Ads User Stories](https://wiki.inbcu.com/display/SSH/7%29+User+Stories)
 
-# Freewheel URL [/freewheel-url?{debug,brand,platform,streamType,videoSpec,videoAssetId,videoDurationInSeconds,httpUserAgent,httpReferer,canonicalMvpdName}]
+# Freewheel URL [/freewheel-url?{debug,brand,platform,streamType,videoSpec,videoAssetId,videoDurationInSeconds,httpUserAgent,httpReferer,canonicalMvpdName,subscriberId}]
 
 + Parameters
 
@@ -83,6 +83,8 @@ document for a particular video stream.
     
     + gdprConsentString (string, required)
     
+    + coppaApplies (boolean, required)
+    
     + playerWidthPixels (number, required)
     
     + playerHeightPixels (number, required)
@@ -90,9 +92,10 @@ document for a particular video stream.
     + deviceTypeAndId (string, required)
     
         This value will be ignored for COPPA users.
-        
+    
+    + subscriberId (string, required)
 
-# Get Freewheel URL [GET /freewheel-url?{brand,platform,streamType,videoSpec,videoAssetId,videoDurationInSeconds,httpUserAgent,httpReferer,canonicalMvpdName}]
+# Get Freewheel URL [GET /freewheel-url?{brand,platform,streamType,videoSpec,videoAssetId,videoDurationInSeconds,httpUserAgent,httpReferer,canonicalMvpdName,subscriberId}]
 
 The client calls this and gets the Freewheel URL from **freewheelUrl** in the response. 
 
@@ -107,7 +110,7 @@ the Freewheel URL.
                 "freewheelUrl": "https://[customerId].v.fwmrm.net/ad/g/1?[globalParams];[keyValues];[ParamsForSlot1];[ParamsForSlot2];...;[ParamsForSlotN];"
             }
 
-# Get Freewheel URL (debug version) [GET /freewheel-url?{debug,brand,platform,streamType,videoSpec,videoAssetId,videoDurationInSeconds,httpUserAgent,httpReferer,canonicalMvpdName}]
+# Get Freewheel URL (debug version) [GET /freewheel-url?{debug,brand,platform,streamType,videoSpec,videoAssetId,videoDurationInSeconds,httpUserAgent,httpReferer,canonicalMvpdName,subscriberId}]
 
 The debug version returns the same **frewheelUrl** value, plus the exploded set of Freewheel parameters embedded in the URL.
 
