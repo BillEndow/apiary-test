@@ -83,6 +83,8 @@ document for a particular video stream.
     
     + gdprTrackingConsentString (string, required)
     
+    + gdprTargetingConsent (boolean, required)
+    
     + coppaApplies (boolean, required)
     
     + playerWidthPixels (number, required)
@@ -94,6 +96,8 @@ document for a particular video stream.
     + deviceId (string, required)
     
         This value will be ignored for COPPA users.
+    
+    + deviceTrackingConsent (boolean, required)
     
     + subscriberIdObfuscated (string, required)
     
@@ -107,14 +111,9 @@ document for a particular video stream.
     
     + cdnName (string, required)
     
-    + deviceTrackingConsent (boolean, required)
-    
-    + gdprTargetingConsent (boolean, required)
-    
     + mpsWebSectionPath (string, optional)
     
     
-
 # Get Freewheel URL [GET /freewheel-url?{brand,platform,streamType,videoSpec,videoAssetId,videoDurationInSeconds,httpUserAgent,httpReferer,mvpdCanonicalName,locationLatitude,locationLongitude,locationCountry,locationState,locationCity,locationDma,locationPostalCode,gdprApplies,gdprTrackingConsentString,coppaApplies,playerWidthPixels,playerHeightPixels,deviceType,deviceId,subscriberIdObfuscated,appName,appBuildNumber,sdkName,playerName,cdnName,deviceTrackingConsent,gdprTargetingConsent,mpsWebSectionPath}]
 
 The client calls this and gets the Freewheel URL from **freewheelUrl** in the response. 
