@@ -13,7 +13,7 @@ document for a particular video stream.
 
 [NBCU Ad Sales Solutions: Video Ads User Stories](https://wiki.inbcu.com/display/SSH/7%29+User+Stories)
 
-# Freewheel URL [/freewheel-url?{debug,brand,platform,streamType,videoSpec,videoAssetId,videoDurationInSeconds,httpUserAgent,httpReferer,canonicalMvpdName,subscriberId}]
+# Freewheel URL [/freewheel-url?{brand,platform,streamType,videoSpec,videoAssetId,videoDurationInSeconds,httpUserAgent,httpReferer,mvpdCanonicalName,locationLatitude,locationLongitude,locationCountry,locationState,locationCity,locationDma,locationPostalCode,gdprApplies,gdprTrackingConsentString,coppaApplies,playerWidthPixels,playerHeightPixels,deviceType,deviceId,subscriberIdObfuscated,appName,appBuildNumber,sdkName,playerName,cdnName,deviceTrackingConsent,gdprTargetingConsent,mpsWebSectionPath}]
 
 + Parameters
 
@@ -57,7 +57,7 @@ document for a particular video stream.
     
         Sent by web browsers only.
         
-    + canonicalMvpdName (string, required)
+    + mvpdCanonicalName (string, required)
     
         Canonical MVPD name string. VAM will use the canonical MVPD name string to find a corresponding hash value
         in [this file](https://tve-common.nbcuni.com/web/js/nbcuni_hash_config.js).
@@ -81,7 +81,7 @@ document for a particular video stream.
     
     + gdprApplies (boolean, required)
     
-    + gdprConsentString (string, required)
+    + gdprTrackingConsentString (string, required)
     
     + coppaApplies (boolean, required)
     
@@ -89,13 +89,33 @@ document for a particular video stream.
     
     + playerHeightPixels (number, required)
     
-    + deviceTypeAndId (string, required)
+    + deviceType (string, required)
+    
+    + deviceId (string, required)
     
         This value will be ignored for COPPA users.
     
-    + subscriberId (string, required)
+    + subscriberIdObfuscated (string, required)
+    
+    + appName (string, required)
+    
+    + appBuildNumber (string, required)
+    
+    + sdkName (string, required)
+    
+    + playerName (string, required)
+    
+    + cdnName (string, required)
+    
+    + deviceTrackingConsent (boolean, required)
+    
+    + gdprTargetingConsent (boolean, required)
+    
+    + mpsWebSectionPath (string, optional)
+    
+    
 
-# Get Freewheel URL [GET /freewheel-url?{brand,platform,streamType,videoSpec,videoAssetId,videoDurationInSeconds,httpUserAgent,httpReferer,canonicalMvpdName,subscriberId}]
+# Get Freewheel URL [GET /freewheel-url?{brand,platform,streamType,videoSpec,videoAssetId,videoDurationInSeconds,httpUserAgent,httpReferer,mvpdCanonicalName,locationLatitude,locationLongitude,locationCountry,locationState,locationCity,locationDma,locationPostalCode,gdprApplies,gdprTrackingConsentString,coppaApplies,playerWidthPixels,playerHeightPixels,deviceType,deviceId,subscriberIdObfuscated,appName,appBuildNumber,sdkName,playerName,cdnName,deviceTrackingConsent,gdprTargetingConsent,mpsWebSectionPath}]
 
 The client calls this and gets the Freewheel URL from **freewheelUrl** in the response. 
 
@@ -110,7 +130,7 @@ the Freewheel URL.
                 "freewheelUrl": "https://[customerId].v.fwmrm.net/ad/g/1?[globalParams];[keyValues];[ParamsForSlot1];[ParamsForSlot2];...;[ParamsForSlotN];"
             }
 
-# Get Freewheel URL (debug version) [GET /freewheel-url?{debug,brand,platform,streamType,videoSpec,videoAssetId,videoDurationInSeconds,httpUserAgent,httpReferer,canonicalMvpdName,subscriberId}]
+# Get Freewheel URL (debug version) [GET /freewheel-url?{debug,brand,platform,streamType,videoSpec,videoAssetId,videoDurationInSeconds,httpUserAgent,httpReferer,mvpdCanonicalName,locationLatitude,locationLongitude,locationCountry,locationState,locationCity,locationDma,locationPostalCode,gdprApplies,gdprTrackingConsentString,coppaApplies,playerWidthPixels,playerHeightPixels,deviceType,deviceId,subscriberIdObfuscated,appName,appBuildNumber,sdkName,playerName,cdnName,deviceTrackingConsent,gdprTargetingConsent,mpsWebSectionPath}]
 
 The debug version returns the same **frewheelUrl** value, plus the exploded set of Freewheel parameters embedded in the URL.
 
